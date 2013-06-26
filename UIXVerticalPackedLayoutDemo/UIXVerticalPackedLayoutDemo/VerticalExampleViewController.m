@@ -41,7 +41,7 @@
     }
     self.theData = arr;
 
-    UIXVerticalPackedLayout* layout = self.collection.collectionViewLayout;
+    UIXVerticalPackedLayout* layout = (UIXVerticalPackedLayout*) self.collection.collectionViewLayout;
     layout.sectionInset = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
     layout.verticalSpacing = 20;
     layout.columnSpacing = 20;

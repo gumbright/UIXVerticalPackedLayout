@@ -41,7 +41,7 @@
     }
     self.theData = arr;
 
-    UIXHorizontalPackedLayout* layout = self.collection.collectionViewLayout;
+    UIXHorizontalPackedLayout* layout = (UIXHorizontalPackedLayout*) self.collection.collectionViewLayout;
     layout.sectionInset = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
     layout.horizontalSpacing = 20;
     layout.rowSpacing = 20;

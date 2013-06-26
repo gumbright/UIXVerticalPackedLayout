@@ -94,7 +94,7 @@
     self.maxHeight = self.collectionView.bounds.size.height - (self.sectionInset.top + self.sectionInset.bottom);
     NSMutableArray* currentColumn = [NSMutableArray array];
     
-    numSections = [self.collectionView.dataSource numberOfSectionsInCollectionView:self.collectionView.dataSource];
+    numSections = [self.collectionView.dataSource numberOfSectionsInCollectionView:self.collectionView];
     sectionData = [NSMutableArray arrayWithCapacity:numSections];
 
     for (int sectionNdx=0; sectionNdx < numSections; ++sectionNdx)

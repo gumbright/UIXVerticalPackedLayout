@@ -94,7 +94,7 @@
     self.maxWidth = self.collectionView.bounds.size.width - (self.sectionInset.left + self.sectionInset.right);
     NSMutableArray* currentRow = [NSMutableArray array];
     
-    numSections = [self.collectionView.dataSource numberOfSectionsInCollectionView:self.collectionView.dataSource];
+    numSections = [self.collectionView.dataSource numberOfSectionsInCollectionView:self.collectionView];
     sectionData = [NSMutableArray arrayWithCapacity:numSections];
 
     for (int sectionNdx=0; sectionNdx < numSections; ++sectionNdx)
