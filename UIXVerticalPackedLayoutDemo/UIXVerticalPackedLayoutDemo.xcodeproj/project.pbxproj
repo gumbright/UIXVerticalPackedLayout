@@ -16,10 +16,16 @@
 		E492801B1732169F00189DCB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E492801A1732169F00189DCB /* Default.png */; };
 		E492801D1732169F00189DCB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E492801C1732169F00189DCB /* Default@2x.png */; };
 		E492801F1732169F00189DCB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E492801E1732169F00189DCB /* Default-568h@2x.png */; };
-		E49280221732169F00189DCB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49280211732169F00189DCB /* ViewController.m */; };
-		E49280251732169F00189DCB /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E49280231732169F00189DCB /* ViewController.xib */; };
+		E49280221732169F00189DCB /* VerticalExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49280211732169F00189DCB /* VerticalExampleViewController.m */; };
 		E492802E17321DBD00189DCB /* UIXVerticalPackedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E492802D17321DBD00189DCB /* UIXVerticalPackedLayout.m */; };
 		E4928030173221AC00189DCB /* Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E492802F173221AC00189DCB /* Cell.xib */; };
+		E49590AC1777F71000ABC638 /* UIXHorizontalPackedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E49590AB1777F71000ABC638 /* UIXHorizontalPackedLayout.m */; };
+		E49590AE17794E2B00ABC638 /* VerticalExampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E49590AD17794E2B00ABC638 /* VerticalExampleViewController.xib */; };
+		E49590B31779515000ABC638 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49590B11779515000ABC638 /* MainViewController.m */; };
+		E49590B41779515000ABC638 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E49590B21779515000ABC638 /* MainViewController.xib */; };
+		E49590B817795E4300ABC638 /* HorizontalExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49590B617795E4300ABC638 /* HorizontalExampleViewController.m */; };
+		E49590B917795E4300ABC638 /* HorizontalExampleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E49590B717795E4300ABC638 /* HorizontalExampleViewController.xib */; };
+		E49590BC177A7E8600ABC638 /* UIXPackedLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = E49590BB177A7E8600ABC638 /* UIXPackedLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,12 +42,22 @@
 		E492801A1732169F00189DCB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		E492801C1732169F00189DCB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		E492801E1732169F00189DCB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		E49280201732169F00189DCB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E49280211732169F00189DCB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		E49280241732169F00189DCB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		E49280201732169F00189DCB /* VerticalExampleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VerticalExampleViewController.h; sourceTree = "<group>"; };
+		E49280211732169F00189DCB /* VerticalExampleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VerticalExampleViewController.m; sourceTree = "<group>"; };
 		E492802C17321DBD00189DCB /* UIXVerticalPackedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIXVerticalPackedLayout.h; sourceTree = "<group>"; };
 		E492802D17321DBD00189DCB /* UIXVerticalPackedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIXVerticalPackedLayout.m; sourceTree = "<group>"; };
 		E492802F173221AC00189DCB /* Cell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Cell.xib; sourceTree = "<group>"; };
+		E49590AA1777F71000ABC638 /* UIXHorizontalPackedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIXHorizontalPackedLayout.h; sourceTree = "<group>"; };
+		E49590AB1777F71000ABC638 /* UIXHorizontalPackedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIXHorizontalPackedLayout.m; sourceTree = "<group>"; };
+		E49590AD17794E2B00ABC638 /* VerticalExampleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VerticalExampleViewController.xib; sourceTree = "<group>"; };
+		E49590B01779515000ABC638 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = UIXVerticalPackedLayoutDemo/MainViewController/MainViewController.h; sourceTree = "<group>"; };
+		E49590B11779515000ABC638 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = UIXVerticalPackedLayoutDemo/MainViewController/MainViewController.m; sourceTree = "<group>"; };
+		E49590B21779515000ABC638 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainViewController.xib; path = UIXVerticalPackedLayoutDemo/MainViewController/MainViewController.xib; sourceTree = "<group>"; };
+		E49590B517795E4300ABC638 /* HorizontalExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HorizontalExampleViewController.h; sourceTree = "<group>"; };
+		E49590B617795E4300ABC638 /* HorizontalExampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HorizontalExampleViewController.m; sourceTree = "<group>"; };
+		E49590B717795E4300ABC638 /* HorizontalExampleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HorizontalExampleViewController.xib; sourceTree = "<group>"; };
+		E49590BA177A7E8500ABC638 /* UIXPackedLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.h; path = UIXPackedLayout.h; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
+		E49590BB177A7E8600ABC638 /* UIXPackedLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.c.objc; path = UIXPackedLayout.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; wrapsLines = 1; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +77,8 @@
 		E4927FFC1732169F00189DCB = {
 			isa = PBXGroup;
 			children = (
+				E49590AF17794FA300ABC638 /* MainViewController */,
+				E49590A91777F71000ABC638 /* UIXHorizontalPackedLayout */,
 				E492802B17321DBD00189DCB /* UIXVerticalPackedLayout */,
 				E492800E1732169F00189DCB /* UIXVerticalPackedLayoutDemo */,
 				E49280071732169F00189DCB /* Frameworks */,
@@ -89,11 +107,14 @@
 		E492800E1732169F00189DCB /* UIXVerticalPackedLayoutDemo */ = {
 			isa = PBXGroup;
 			children = (
+				E49590B517795E4300ABC638 /* HorizontalExampleViewController.h */,
+				E49590B617795E4300ABC638 /* HorizontalExampleViewController.m */,
+				E49590B717795E4300ABC638 /* HorizontalExampleViewController.xib */,
 				E49280171732169F00189DCB /* AppDelegate.h */,
 				E49280181732169F00189DCB /* AppDelegate.m */,
-				E49280201732169F00189DCB /* ViewController.h */,
-				E49280211732169F00189DCB /* ViewController.m */,
-				E49280231732169F00189DCB /* ViewController.xib */,
+				E49280201732169F00189DCB /* VerticalExampleViewController.h */,
+				E49280211732169F00189DCB /* VerticalExampleViewController.m */,
+				E49590AD17794E2B00ABC638 /* VerticalExampleViewController.xib */,
 				E492800F1732169F00189DCB /* Supporting Files */,
 				E492802F173221AC00189DCB /* Cell.xib */,
 			);
@@ -117,11 +138,33 @@
 		E492802B17321DBD00189DCB /* UIXVerticalPackedLayout */ = {
 			isa = PBXGroup;
 			children = (
+				E49590BA177A7E8500ABC638 /* UIXPackedLayout.h */,
+				E49590BB177A7E8600ABC638 /* UIXPackedLayout.m */,
 				E492802C17321DBD00189DCB /* UIXVerticalPackedLayout.h */,
 				E492802D17321DBD00189DCB /* UIXVerticalPackedLayout.m */,
 			);
 			name = UIXVerticalPackedLayout;
 			path = ../UIXVerticalPackedLayout;
+			sourceTree = "<group>";
+		};
+		E49590A91777F71000ABC638 /* UIXHorizontalPackedLayout */ = {
+			isa = PBXGroup;
+			children = (
+				E49590AA1777F71000ABC638 /* UIXHorizontalPackedLayout.h */,
+				E49590AB1777F71000ABC638 /* UIXHorizontalPackedLayout.m */,
+			);
+			name = UIXHorizontalPackedLayout;
+			path = ../UIXHorizontalPackedLayout;
+			sourceTree = "<group>";
+		};
+		E49590AF17794FA300ABC638 /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E49590B01779515000ABC638 /* MainViewController.h */,
+				E49590B11779515000ABC638 /* MainViewController.m */,
+				E49590B21779515000ABC638 /* MainViewController.xib */,
+			);
+			name = MainViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,8 +222,10 @@
 				E492801B1732169F00189DCB /* Default.png in Resources */,
 				E492801D1732169F00189DCB /* Default@2x.png in Resources */,
 				E492801F1732169F00189DCB /* Default-568h@2x.png in Resources */,
-				E49280251732169F00189DCB /* ViewController.xib in Resources */,
 				E4928030173221AC00189DCB /* Cell.xib in Resources */,
+				E49590AE17794E2B00ABC638 /* VerticalExampleViewController.xib in Resources */,
+				E49590B41779515000ABC638 /* MainViewController.xib in Resources */,
+				E49590B917795E4300ABC638 /* HorizontalExampleViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,8 +238,12 @@
 			files = (
 				E49280151732169F00189DCB /* main.m in Sources */,
 				E49280191732169F00189DCB /* AppDelegate.m in Sources */,
-				E49280221732169F00189DCB /* ViewController.m in Sources */,
+				E49280221732169F00189DCB /* VerticalExampleViewController.m in Sources */,
 				E492802E17321DBD00189DCB /* UIXVerticalPackedLayout.m in Sources */,
+				E49590AC1777F71000ABC638 /* UIXHorizontalPackedLayout.m in Sources */,
+				E49590B31779515000ABC638 /* MainViewController.m in Sources */,
+				E49590B817795E4300ABC638 /* HorizontalExampleViewController.m in Sources */,
+				E49590BC177A7E8600ABC638 /* UIXPackedLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,14 +256,6 @@
 				E49280121732169F00189DCB /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		E49280231732169F00189DCB /* ViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E49280241732169F00189DCB /* en */,
-			);
-			name = ViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -321,6 +362,7 @@
 				E492802A1732169F00189DCB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

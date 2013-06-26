@@ -1,13 +1,13 @@
 //
-//  ViewController.h
+//  MainViewController.h
 //  UIXVerticalPackedLayoutDemo
 //
-//  Created by Guy Umbright on 5/1/13.
+//  Created by Guy Umbright on 6/24/13.
 //  Copyright (c) 2013 Umbright Consulting, Inc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface MainViewController : UIViewController
 
 @end

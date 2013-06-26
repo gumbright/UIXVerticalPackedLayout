@@ -7,19 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIXPackedLayout.h"
 
-@class UIXVerticalPackedLayout;
+@interface UIXVerticalPackedLayout : UIXPackedLayout
 
-@protocol UIXVerticalPackedLayoutDelegate <NSObject>
-
-- (CGSize) UIXVerticalPackedLayout: (UIXVerticalPackedLayout*) layout sizeForItemAtIndex:(NSIndexPath*) indexPath;
-
-@end
-
-@interface UIXVerticalPackedLayout : UICollectionViewLayout
-
-@property (nonatomic, weak) IBOutlet NSObject<UIXVerticalPackedLayoutDelegate>* delegate;
-@property (nonatomic, assign) UIEdgeInsets sectionInset;
 @property (nonatomic, assign) CGFloat verticalSpacing;
 @property (nonatomic, assign) CGFloat columnSpacing;
 @property (nonatomic, assign) CGFloat columnWidth;

@@ -1,26 +1,26 @@
 //
-//  UIXVerticalPackedCollectionViewLayout.m
+//  UIXHorizontalPackedCollectionViewLayout.m
 //  HomewreckerHack
 //
 //  Created by Guy Umbright on 4/30/13.
 //  Copyright (c) 2013 Umbright Consulting, Inc. All rights reserved.
 //
 
-#import "UIXVerticalPackedLayout.h"
+#import "UIXHorizontalPackedLayout.h"
 
-@interface UIXVerticalPackedLayout ()
-@property (nonatomic, assign) CGFloat maxHeight;
+@interface UIXHorizontalPackedLayout ()
+@property (nonatomic, assign) CGFloat maxWidth;
 @end
 
-@implementation UIXVerticalPackedLayout
+@implementation UIXHorizontalPackedLayout
 /////////////////////////////////////////////////////
 //
 /////////////////////////////////////////////////////
 - (void) commonInit
 {
-    self.verticalSpacing = 0;
-    self.columnSpacing = 0;
-    self.columnWidth = 100;
+    self.horizontalSpacing = 0;
+    self.rowSpacing = 0;
+    self.rowHeight = 100;
 }
 
 /////////////////////////////////////////////////////
@@ -48,33 +48,33 @@
 /////////////////////////////////////////////////////
 //
 /////////////////////////////////////////////////////
-- (void) justify:(NSArray*) currentColumn
+- (void) justify:(NSArray*) currentRow
 {
     //if item = 1, stick it to top
-    if (currentColumn.count > 1)
+    if (currentRow.count > 1)
     {
-        CGFloat totalHeight = 0;
+        CGFloat totalWidth = 0;
         
-        for (UICollectionViewLayoutAttributes* attr in currentColumn)
+        for (UICollectionViewLayoutAttributes* attr in currentRow)
         {
-            totalHeight += attr.frame.size.height;
+            totalWidth += attr.frame.size.width;
         }
         
-        CGFloat totalPad = self.maxHeight - totalHeight;
-        CGFloat itemPad = totalPad / (currentColumn.count - 1);
+        CGFloat totalPad = self.maxWidth - totalWidth;
+        CGFloat itemPad = totalPad / (currentRow.count - 1);
 
-        UICollectionViewLayoutAttributes* attr0 = currentColumn[0];
-        CGFloat currentY = CGRectGetMaxY(attr0.frame) + itemPad;
+        UICollectionViewLayoutAttributes* attr0 = currentRow[0];
+        CGFloat currentX = CGRectGetMaxX(attr0.frame) + itemPad;
         
-        for (UICollectionViewLayoutAttributes* attr in currentColumn)
+        for (UICollectionViewLayoutAttributes* attr in currentRow)
         {
-            if (attr != currentColumn[0])
+            if (attr != currentRow[0])
             {
                 CGRect frame = attr.frame;
-                frame.origin.y = currentY;
+                frame.origin.x = currentX;
                 attr.frame = frame;
                 
-                currentY = CGRectGetMaxY(frame)+itemPad;
+                currentX = CGRectGetMaxX(frame)+itemPad;
             }
         }
     }
@@ -91,8 +91,8 @@
     NSMutableArray* sectionData;
     currentX = self.sectionInset.left;
     currentY = self.sectionInset.top;
-    self.maxHeight = self.collectionView.bounds.size.height - (self.sectionInset.top + self.sectionInset.bottom);
-    NSMutableArray* currentColumn = [NSMutableArray array];
+    self.maxWidth = self.collectionView.bounds.size.width - (self.sectionInset.left + self.sectionInset.right);
+    NSMutableArray* currentRow = [NSMutableArray array];
     
     numSections = [self.collectionView.dataSource numberOfSectionsInCollectionView:self.collectionView.dataSource];
     sectionData = [NSMutableArray arrayWithCapacity:numSections];
@@ -105,16 +105,16 @@
         {
             CGSize sz = [self.delegate UIXPackedLayout: self sizeForItemAtIndex:[NSIndexPath indexPathForItem:itemNdx inSection:sectionNdx]];
             
-            if (currentY + sz.height > self.maxHeight)
+            if (currentX + sz.width > self.maxWidth)
             {
-                currentX += (self.columnWidth + self.columnSpacing);
-                currentY = self.sectionInset.top;
+                currentY+= (self.rowHeight + self.rowSpacing);
+                currentX = self.sectionInset.left;
                 
                 if (self.justified)
                 {
-                    [self justify:currentColumn];
+                    [self justify:currentRow];
                 }
-                currentColumn = [NSMutableArray array];
+                currentRow = [NSMutableArray array];
             }
             
             //if an item does not fit after advancing the column, just let it hang off the bottom
@@ -122,25 +122,24 @@
             CGRect frame = CGRectMake(currentX, currentY, sz.width, sz.height);
             attr.frame = frame;
             [itemData addObject:attr];
-            [currentColumn addObject:attr];
+            [currentRow addObject:attr];
             
-            currentY += (sz.height + self.verticalSpacing);
+            currentX += (sz.width + self.horizontalSpacing);
         }
         
         [sectionData addObject:itemData];
 
-        currentX += (self.columnWidth + self.columnSpacing);
-        currentY = self.sectionInset.top;
+        currentY += (self.rowHeight + self.rowSpacing);
+        currentX = self.sectionInset.left;
         if (self.justified)
         {
-            [self justify:currentColumn];
+            [self justify:currentRow];
         }
-        currentColumn = [NSMutableArray array];
+        currentRow = [NSMutableArray array];
     }
     
     self.layoutData = sectionData;
-    self.layoutContentSize = CGSizeMake(currentX-self.columnSpacing + self.sectionInset.right, self.collectionView.bounds.size.height);
+    self.layoutContentSize = CGSizeMake(self.collectionView.bounds.size.width,currentY-self.rowSpacing + self.sectionInset.bottom);
 }
-
 
 @end

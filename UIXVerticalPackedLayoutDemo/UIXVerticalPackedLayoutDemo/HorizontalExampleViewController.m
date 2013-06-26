@@ -6,19 +6,20 @@
 //  Copyright (c) 2013 Umbright Consulting, Inc. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "UIXVerticalPackedLayout.h"
+#import "HorizontalExampleViewController.h"
+#import "UIXHorizontalPackedLayout.h"
 
 #define NUM_ITEMS 30
 #define NUM_DATA_ITEMS 10
+#define ROW_HEIGHT 100
 
-@interface ViewController ()
+@interface HorizontalExampleViewController ()
 @property (nonatomic, weak) IBOutlet UICollectionView* collection;
 @property (nonatomic, strong) NSArray* theData;
 @property (nonatomic, strong) NSArray* colors;
 @end
 
-@implementation ViewController
+@implementation HorizontalExampleViewController
 
 - (void)viewDidLoad
 {
@@ -35,16 +36,17 @@
     NSMutableArray* arr = [NSMutableArray array];
     for (int ndx = 0; ndx < NUM_ITEMS; ++ndx)
     {
-        [arr addObject:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:random() % 400],@"height",
+        [arr addObject:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:random() % 400],@"width",
                         self.colors[random() % self.colors.count],@"color",nil]];
     }
     self.theData = arr;
 
-    UIXVerticalPackedLayout* layout = self.collection.collectionViewLayout;
+    UIXHorizontalPackedLayout* layout = self.collection.collectionViewLayout;
     layout.sectionInset = UIEdgeInsetsMake(10.0, 10.0, 10.0, 10.0);
-    layout.verticalSpacing = 20;
-    layout.columnSpacing = 20;
+    layout.horizontalSpacing = 20;
+    layout.rowSpacing = 20;
     layout.justified = NO;
+    layout.rowHeight = ROW_HEIGHT;
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,12 +75,12 @@
     return 1;
 }
 
-- (CGSize) UIXVerticalPackedLayout: (UIXVerticalPackedLayout*) layout sizeForItemAtIndex:(NSIndexPath*) indexPath
+- (CGSize) UIXPackedLayout: (UIXPackedLayout*) layout sizeForItemAtIndex:(NSIndexPath*) indexPath
 {
     CGSize result = CGSizeZero;
     
-    NSNumber* n = self.theData[indexPath.item][@"height"];
-    result = CGSizeMake(layout.columnWidth, [n floatValue]);
+    NSNumber* n = self.theData[indexPath.item][@"width"];
+    result = CGSizeMake([n floatValue],ROW_HEIGHT);
     
     return result;
 }
