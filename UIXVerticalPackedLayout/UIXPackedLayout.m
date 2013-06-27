@@ -19,6 +19,8 @@
 {
     self.sectionInset = UIEdgeInsetsZero;
     self.justified = NO;
+    self.layoutData = nil;
+    self.headerData = nil;
 }
 
 /////////////////////////////////////////////////////
@@ -68,6 +70,15 @@
             {
                 [result addObject:attr];
             }
+        }
+    }
+    
+    for (UICollectionViewLayoutAttributes* attr in self.headerData)
+    {
+        CGRect intersect = CGRectIntersection(rect, attr.frame);
+        if (!CGRectIsEmpty(intersect))
+        {
+            [result addObject:attr];
         }
     }
     return result;

@@ -89,6 +89,13 @@
     NSUInteger numSections;
     NSUInteger numItems;
     NSMutableArray* sectionData;
+    NSMutableArray* headerData;
+    CGSize sz;
+    CGRect frame;
+    NSIndexPath* indexPath;
+    
+    UICollectionViewLayoutAttributes* attr;
+    
     currentX = self.sectionInset.left;
     currentY = self.sectionInset.top;
     self.maxWidth = self.collectionView.bounds.size.width - (self.sectionInset.left + self.sectionInset.right);
@@ -96,14 +103,31 @@
     
     numSections = [self.collectionView.dataSource numberOfSectionsInCollectionView:self.collectionView];
     sectionData = [NSMutableArray arrayWithCapacity:numSections];
-
+    headerData = [NSMutableArray arrayWithCapacity:numSections];
+    
     for (int sectionNdx=0; sectionNdx < numSections; ++sectionNdx)
     {
+        indexPath = [NSIndexPath indexPathForItem:0 inSection:sectionNdx];
+        sz = CGSizeZero;
+        if ([self.delegate respondsToSelector:@selector(UIXPackedLayout:sizeOfHeaderForSection:)])
+        {
+            sz = [self.delegate UIXPackedLayout:self sizeOfHeaderForSection:sectionNdx];
+        }
+        
+        if (sz.height != 0)
+        {
+            attr = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:@"header" withIndexPath:indexPath];
+            frame = CGRectMake(self.sectionInset.left, currentY, sz.width, sz.height);
+            attr.frame = frame;
+            currentY += (frame.size.height + self.rowSpacing);
+            [headerData addObject:attr];
+        }
+
         numItems = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:sectionNdx];
         NSMutableArray* itemData = [NSMutableArray arrayWithCapacity:numItems];
         for (int itemNdx = 0; itemNdx < numItems; ++itemNdx)
         {
-            CGSize sz = [self.delegate UIXPackedLayout: self sizeForItemAtIndex:[NSIndexPath indexPathForItem:itemNdx inSection:sectionNdx]];
+            sz = [self.delegate UIXPackedLayout: self sizeForItemAtIndex:[NSIndexPath indexPathForItem:itemNdx inSection:sectionNdx]];
             
             if (currentX + sz.width > self.maxWidth)
             {
@@ -118,8 +142,8 @@
             }
             
             //if an item does not fit after advancing the column, just let it hang off the bottom
-            UICollectionViewLayoutAttributes* attr = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:[NSIndexPath indexPathForItem:itemNdx inSection:sectionNdx]];
-            CGRect frame = CGRectMake(currentX, currentY, sz.width, sz.height);
+            attr = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:[NSIndexPath indexPathForItem:itemNdx inSection:sectionNdx]];
+            frame = CGRectMake(currentX, currentY, sz.width, sz.height);
             attr.frame = frame;
             [itemData addObject:attr];
             [currentRow addObject:attr];
@@ -139,6 +163,7 @@
     }
     
     self.layoutData = sectionData;
+    self.headerData = headerData;
     self.layoutContentSize = CGSizeMake(self.collectionView.bounds.size.width,currentY-self.rowSpacing + self.sectionInset.bottom);
 }
 
