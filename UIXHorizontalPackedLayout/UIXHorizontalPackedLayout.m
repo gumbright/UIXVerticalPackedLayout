@@ -8,8 +8,13 @@
 
 #import "UIXHorizontalPackedLayout.h"
 
+#define ROWCACHEKEY_STARTINDEX @"startIndex"
+#define ROWCACHEKEY_NUMBEROFITEMS @"numberOfItems"
+#define ROWCACHEKEY_NEXTROWITEMINDEX @"nextRowItemIndex"
+
 @interface UIXHorizontalPackedLayout ()
 @property (nonatomic, assign) CGFloat maxWidth;
+@property (nonatomic, strong) NSMutableDictionary* rowDataCache;
 @end
 
 @implementation UIXHorizontalPackedLayout
@@ -21,6 +26,7 @@
     self.horizontalSpacing = 0;
     self.rowSpacing = 0;
     self.rowHeight = 100;
+    self.rowDataCache = [NSMutableDictionary dictionary];
 }
 
 /////////////////////////////////////////////////////
@@ -167,4 +173,66 @@
     self.layoutContentSize = CGSizeMake(self.collectionView.bounds.size.width,currentY-self.rowSpacing + self.sectionInset.bottom);
 }
 
+//generate attribues for row
+//
+/////////////////////////////////////////////////////
+//
+/////////////////////////////////////////////////////
+- (void) generateAttributesForRow:(NSInteger) row
+{
+    NSNumber* indexKey = [NSNumber numberWithInteger:row];
+    NSInteger startItemIndex, currentItemIndex;
+    
+    NSDictionary* rowDict = [self.rowDataCache objectForKey:indexKey];
+    
+    if (rowDict)
+    {
+        return;
+    }
+
+    //get previous row for start index (0 if row == 0)
+    if (row == 0)
+    {
+        startItemIndex = 0;
+    }
+    else
+    {
+        NSNumber* indexKey = [NSNumber numberWithInteger:row-1];
+        NSDictionary* prevRowDict = [self.rowDataCache objectForKey:indexKey];
+        NSNumber* n = [prevRowDict objectForKey:ROWCACHEKEY_NEXTROWITEMINDEX];
+        startItemIndex = n.integerValue;
+    }
+    
+    currentItemIndex = startItemIndex;
+    
+    //calc positions until we run out of space
+    //create the rowCacheEntry
+}
+
+/////////////////////////////////////////////////////
+//
+/////////////////////////////////////////////////////
+- (void) prepareRowsUpTo:(NSInteger) row
+{
+    for (NSInteger ndx = 0; ndx < row; ++ndx)
+    {
+        [self generateAttributesForRow:ndx];
+    }
+}
+
+/////////////////////////////////////////////////////
+//
+/////////////////////////////////////////////////////
+- (NSArray*) layoutAttributesForElementsInRect:(CGRect)rect
+{
+    //determine starting and ending row
+    NSInteger startRow = rect.origin.y / self.rowHeight;
+    NSInteger endRow = (rect.origin.y + rect.size.height) / self.rowHeight;
+    
+    [self prepareRowsUpTo:endRow];
+    //verify we have everything up to starting row
+    //for each row from start to end
+    //   generate attrs
+    
+}
 @end
