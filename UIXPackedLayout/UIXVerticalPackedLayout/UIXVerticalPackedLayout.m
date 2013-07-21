@@ -21,6 +21,7 @@
     self.verticalSpacing = 0;
     self.columnSpacing = 0;
     self.columnWidth = 100;
+    self.singleColumn = NO;
 }
 
 /////////////////////////////////////////////////////
@@ -105,7 +106,7 @@
         {
             CGSize sz = [self.delegate UIXPackedLayout: self sizeForItemAtIndex:[NSIndexPath indexPathForItem:itemNdx inSection:sectionNdx]];
             
-            if (currentY + sz.height > self.maxHeight)
+            if (!self.singleColumn && currentY + sz.height > self.maxHeight)
             {
                 currentX += (self.columnWidth + self.columnSpacing);
                 currentY = self.sectionInset.top;
@@ -129,17 +130,28 @@
         
         [sectionData addObject:itemData];
 
-        currentX += (self.columnWidth + self.columnSpacing);
-        currentY = self.sectionInset.top;
-        if (self.justified)
+        if (!self.singleColumn)
         {
-            [self justify:currentColumn];
+            currentX += (self.columnWidth + self.columnSpacing);
+            currentY = self.sectionInset.top;
+            if (self.justified)
+            {
+                [self justify:currentColumn];
+            }
+            currentColumn = [NSMutableArray array];
         }
-        currentColumn = [NSMutableArray array];
     }
     
     self.layoutData = sectionData;
-    self.layoutContentSize = CGSizeMake(currentX-self.columnSpacing + self.sectionInset.right, self.collectionView.bounds.size.height);
+    
+    if (self.singleColumn)
+    {
+        self.layoutContentSize = CGSizeMake(self.collectionView.bounds.size.width,currentY);
+    }
+    else
+    {
+        self.layoutContentSize = CGSizeMake(currentX-self.columnSpacing + self.sectionInset.right, self.collectionView.bounds.size.height);
+    }
 }
 
 

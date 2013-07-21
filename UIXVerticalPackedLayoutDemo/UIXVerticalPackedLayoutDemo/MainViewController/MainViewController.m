@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "VerticalExampleViewController.h"
+#import "VerticalSingleColumnExampleViewController.h"
 #import "HorizontalExampleViewController.h"
 
 @interface MainViewController ()
@@ -44,9 +45,15 @@
 }
 
 - (IBAction) verticalPressed:(id)sender
-{
-    UIViewController* vc = [[VerticalExampleViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
+    {
+        UIViewController* vc = [[VerticalExampleViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+- (IBAction) verticalSingleColumnPressed:(id)sender
+    {
+        UIViewController* vc = [[VerticalSingleColumnExampleViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
 @end

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>494FA34C-480E-46B4-BFFB-6AFEC8F32565</string>
+	<key>IDESourceControlProjectName</key>
+	<string>UIXVerticalPackedLayoutDemo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>AE63168A-E097-4EB7-99D5-DA3010D4F7A0</key>
+		<string>ssh://github.com/gumbright/UIXVerticalPackedLayout.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>UIXVerticalPackedLayoutDemo/UIXVerticalPackedLayoutDemo.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>AE63168A-E097-4EB7-99D5-DA3010D4F7A0</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/gumbright/UIXVerticalPackedLayout.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>AE63168A-E097-4EB7-99D5-DA3010D4F7A0</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>AE63168A-E097-4EB7-99D5-DA3010D4F7A0</string>
+			<key>IDESourceControlWCCName</key>
+			<string>UIXVerticalPackedLayout</string>
+		</dict>
+	</array>
+</dict>
+</plist>
