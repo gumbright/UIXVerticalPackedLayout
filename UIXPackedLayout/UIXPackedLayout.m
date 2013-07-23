@@ -101,12 +101,59 @@
     return YES;
 }
 
+#if 0
 /////////////////////////////////////////////////////
 //
 /////////////////////////////////////////////////////
 - (void)prepareForCollectionViewUpdates:(NSArray *)updateItems
 {
-    
+    NSLog(@"prepareForCollectionViewUpdates");
 }
 
+- (void)finalizeCollectionViewUpdates
+{
+    NSLog(@"finalizeCollectionViewUpdates");
+}
+
+- (void)finalizeAnimatedBoundsChange
+{
+    NSLog(@"finalizeAnimatedBoundsChange");
+}
+
+- (UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingDecorationElementOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)elementIndexPath
+{
+NSLog(@"finalLayoutAttributesForDisappearingDecorationElementOfKind:");
+    return [super finalLayoutAttributesForDisappearingDecorationElementOfKind:elementKind atIndexPath:elementIndexPath];
+}
+
+- (UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
+{
+    NSLog(@"finalLayoutAttributesForDisappearingItemAtIndexPath");
+    return [super finalLayoutAttributesForDisappearingItemAtIndexPath:itemIndexPath];
+}
+
+- (UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingSupplementaryElementOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)elementIndexPath
+{
+    NSLog(@"finalLayoutAttributesForDisappearingSupplementaryElementOfKind");
+    return [super finalLayoutAttributesForDisappearingSupplementaryElementOfKind:elementKind atIndexPath:elementIndexPath];
+}
+
+- (UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingDecorationElementOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)elementIndexPath
+{
+    NSLog(@"initialLayoutAttributesForAppearingDecorationElementOfKind");
+    return [super initialLayoutAttributesForAppearingDecorationElementOfKind:elementKind atIndexPath:elementIndexPath];
+}
+
+- (UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
+{
+    NSLog(@"initialLayoutAttributesForAppearingItemAtIndexPath");
+    return [super initialLayoutAttributesForAppearingItemAtIndexPath:itemIndexPath];
+}
+
+- (UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingSupplementaryElementOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)elementIndexPath
+{
+    NSLog(@"initialLayoutAttributesForAppearingSupplementaryElementOfKind");
+    return [super initialLayoutAttributesForAppearingSupplementaryElementOfKind:elementKind atIndexPath:elementIndexPath];
+}
+#endif
 @end

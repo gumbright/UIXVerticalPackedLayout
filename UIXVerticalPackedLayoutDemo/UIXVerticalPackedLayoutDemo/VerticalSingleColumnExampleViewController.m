@@ -9,17 +9,23 @@
 #import "VerticalSingleColumnExampleViewController.h"
 #import "UIXVerticalPackedLayout.h"
 
-#define NUM_ITEMS 30
+#define NUM_ITEMS 20
 #define NUM_DATA_ITEMS 10
 #define COLUMN_WIDTH 400
 
 @interface VerticalSingleColumnExampleViewController ()
 @property (nonatomic, weak) IBOutlet UICollectionView* collection;
-@property (nonatomic, strong) NSArray* theData;
+@property (nonatomic, strong) NSMutableArray* theData;
 @property (nonatomic, strong) NSArray* colors;
 @end
 
 @implementation VerticalSingleColumnExampleViewController
+
+- (NSDictionary*) generateDataItem
+{
+    return [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:random() % 300],@"height",
+            self.colors[random() % self.colors.count],@"color",nil];
+}
 
 - (void)viewDidLoad
 {
@@ -36,8 +42,7 @@
     NSMutableArray* arr = [NSMutableArray array];
     for (int ndx = 0; ndx < NUM_ITEMS; ++ndx)
     {
-        [arr addObject:[NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:random() % 400],@"height",
-                        self.colors[random() % self.colors.count],@"color",nil]];
+        [arr addObject:[self generateDataItem]];
     }
     self.theData = arr;
 
@@ -68,7 +73,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return NUM_ITEMS;
+    return self.theData.count;
 }
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView*) collectinView
@@ -85,4 +90,29 @@
     
     return result;
 }
+
+/////////////////////////////////////////////////////
+//
+/////////////////////////////////////////////////////
+- (IBAction) addRandomPressed:(id) sender
+{
+   NSInteger n = random() % self.theData.count;
+   
+   NSDictionary* newItem = [self generateDataItem];
+   
+   [self.theData insertObject:newItem atIndex:n];
+   [self.collection insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:n  inSection:0]]];
+}
+
+/////////////////////////////////////////////////////
+//
+/////////////////////////////////////////////////////
+- (IBAction) removeRandomPressed:(id) sender
+{
+    NSInteger n = random() % self.theData.count;
+        
+    [self.theData removeObjectAtIndex:n];
+    [self.collection deleteItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:n  inSection:0]]];
+}
+
 @end

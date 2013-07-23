@@ -10,6 +10,9 @@
 
 @interface UIXVerticalPackedLayout ()
 @property (nonatomic, assign) CGFloat maxHeight;
+
+@property (nonatomic, strong) NSMutableArray* deleteIndexPaths;
+@property (nonatomic, strong) NSMutableArray* insertIndexPaths;
 @end
 
 @implementation UIXVerticalPackedLayout
@@ -86,6 +89,10 @@
 /////////////////////////////////////////////////////
 - (void) prepareLayout
 {
+NSLog(@"PREPARE LAYOUT");
+
+    [super prepareLayout];
+    
     CGFloat currentX, currentY;
     NSUInteger numSections;
     NSUInteger numItems;
@@ -154,5 +161,83 @@
     }
 }
 
+/////////////////////////////////////////////////////
+//
+// this gives a list of all the update items, so record the things that are deleted and
+// the things that are inserted
+/////////////////////////////////////////////////////
+- (void)prepareForCollectionViewUpdates:(NSArray *)updateItems
+{
+    // Keep track of insert and delete index paths
+    [super prepareForCollectionViewUpdates:updateItems];
+    
+    self.deleteIndexPaths = [NSMutableArray array];
+    self.insertIndexPaths = [NSMutableArray array];
+    
+    for (UICollectionViewUpdateItem *update in updateItems)
+    {
+        if (update.updateAction == UICollectionUpdateActionDelete)
+        {
+            [self.deleteIndexPaths addObject:update.indexPathBeforeUpdate];
+        }
+        else if (update.updateAction == UICollectionUpdateActionInsert)
+        {
+            [self.insertIndexPaths addObject:update.indexPathAfterUpdate];
+        }
+    }
+}
+ 
+
+- (void)finalizeCollectionViewUpdates
+{
+    [super finalizeCollectionViewUpdates];
+    // release the insert and delete index paths
+    self.deleteIndexPaths = nil;
+    self.insertIndexPaths = nil;
+}
+
+- (UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
+    {
+        // Must call super
+        UICollectionViewLayoutAttributes *attributes = [super initialLayoutAttributesForAppearingItemAtIndexPath:itemIndexPath];
+        
+        if ([self.insertIndexPaths containsObject:itemIndexPath])
+        {
+            // only change attributes on inserted cells
+            if (!attributes)
+                attributes = [self layoutAttributesForItemAtIndexPath:itemIndexPath];
+            
+            // Configure attributes ...
+//            attributes.alpha = 0.0;
+        }
+
+        NSLog(@"INITIAL: %@ = %@",itemIndexPath,attributes);
+        return attributes;
+    }
+    
+    // Note: name of method changed
+    // Also this gets called for all visible cells (not just the deleted ones) and
+    // even gets called when inserting cells!
+- (UICollectionViewLayoutAttributes *)finalLayoutAttributesForDisappearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
+    {
+        // So far, calling super hasn't been strictly necessary here, but leaving it in
+        // for good measure
+        UICollectionViewLayoutAttributes *attributes = [super finalLayoutAttributesForDisappearingItemAtIndexPath:itemIndexPath];
+//
+//        if ([self.deleteIndexPaths containsObject:itemIndexPath])
+//        {
+//            // only change attributes on deleted cells
+//            if (!attributes)
+//            attributes = [self layoutAttributesForItemAtIndexPath:itemIndexPath];
+//            
+//            // Configure attributes ...
+//            attributes.alpha = 0.0;
+//            attributes.center = CGPointMake(_center.x, _center.y);
+//            attributes.transform3D = CATransform3DMakeScale(0.1, 0.1, 1.0);
+//        }
+//        
+        NSLog(@"FINAL: %@ = %@",itemIndexPath,attributes);
+        return attributes;
+    }
 
 @end
